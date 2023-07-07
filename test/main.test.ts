@@ -3,6 +3,8 @@ import { describe, it } from "node:test";
 
 describe("main", () => {
   it("asserts true", () => {
-    assert.ok('Phaser requires a web browser. Unit tests only cover business logic');
+    assert.ok(
+      "Phaser requires a web browser. Unit tests only cover business logic",
+    );
   });
 });
