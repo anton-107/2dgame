@@ -1,8 +1,8 @@
-import {Scene, Types} from 'phaser';
+import * as Phaser from 'phaser';
 
-export default class CityScene extends Scene {
-  private cursorsKeys: Types.Input.Keyboard.CursorKeys;
-  private character: Types.Physics.Arcade.SpriteWithDynamicBody;
+export default class CityScene extends Phaser.Scene {
+  private cursorsKeys: Phaser.Types.Input.Keyboard.CursorKeys;
+  private character: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody;
 	constructor()
 	{
 		super('city');
@@ -16,14 +16,7 @@ export default class CityScene extends Scene {
   create() {
     // Create the character sprite
     this.character = this.physics.add.sprite(400, 300, 'guy');
-    
-    // Set up character animations
-    // this.anims.create({
-    //   key: 'up',
-    //   frames: this.anims.generateFrameNumbers('character', { start: 0, end: 2 }),
-    //   frameRate: 10,
-    //   repeat: -1,
-    // });
+
 
     // Enable keyboard input
     if (!this.input) {
