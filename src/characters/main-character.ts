@@ -12,14 +12,20 @@ export default class MainCharacter {
   private speed = 200;
   private currentMovement: MainCharacterMovement = "stopped";
 
+  public loadSpritesheet(scene: Phaser.Scene) {
+    scene.load.spritesheet("guy", "guy.png", {
+      frameWidth: 16,
+      frameHeight: 24,
+    });
+  }
   public addToScene(scene: Phaser.Scene, x: number, y: number) {
     // Create the character sprite
     this.sprite = scene.physics.add.sprite(x, y, "guy", 1);
-    this.sprite.setScale(2); // Make the sprite twice as big
-    
+    this.sprite.setScale(1.5); // Make the sprite twice as big
+
     // Prevent character from moving outside the scene boundaries
     this.sprite.setCollideWorldBounds(true);
-    
+
     this.createAnimations(scene);
   }
 
@@ -83,7 +89,7 @@ export default class MainCharacter {
       this.sprite.play("right", true);
     } else {
       this.sprite.anims.stop();
-      this.sprite.setFrame(0);  // Reset to frame 0 when stopped
+      this.sprite.setFrame(0); // Reset to frame 0 when stopped
     }
   }
 }

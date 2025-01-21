@@ -1,24 +1,26 @@
 import * as Phaser from "phaser";
 
 import MainCharacter from "../characters/main-character";
+import Ground from "../terrain/ground";
 
 export default class CityScene extends Phaser.Scene {
-  private character: MainCharacter | undefined;
+  private character: MainCharacter;
+  private ground: Ground;
   private cursorsKeys: Phaser.Types.Input.Keyboard.CursorKeys | undefined;
 
   constructor() {
     super("city");
+    this.ground = new Ground();
+    this.character = new MainCharacter();
   }
 
   preload() {
-    this.load.spritesheet("guy", "guy.png", {
-      frameWidth: 16,
-      frameHeight: 24,
-    });
+    this.character.loadSpritesheet(this);
+    this.ground.loadSpritesheet(this);
   }
 
   public create() {
-    this.character = new MainCharacter();
+    this.ground.addToScene(this);
     this.character.addToScene(this, 200, 150);
 
     this.initializeCursorKeys();
