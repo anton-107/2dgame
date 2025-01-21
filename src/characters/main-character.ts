@@ -9,24 +9,35 @@ type MainCharacterMovement =
 
 export default class MainCharacter {
   private sprite: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody | undefined;
+  private width =16;
+  private height = 24;
   private speed = 200;
   private currentMovement: MainCharacterMovement = "stopped";
 
   public loadSpritesheet(scene: Phaser.Scene) {
     scene.load.spritesheet("guy", "guy.png", {
-      frameWidth: 16,
-      frameHeight: 24,
+      frameWidth: this.width,
+      frameHeight: this.height,
     });
   }
+
   public addToScene(scene: Phaser.Scene, x: number, y: number) {
     // Create the character sprite
     this.sprite = scene.physics.add.sprite(x, y, "guy", 1);
     this.sprite.setScale(1.5); // Make the sprite twice as big
 
+    // Adjust the physics body size to better match the visible sprite
+    this.sprite.body.setSize(this.width, this.height); // Adjust these values based on your needs
+    this.sprite.body.offset.set(0, 0); // Adjust these values to center the hitbox
+
     // Prevent character from moving outside the scene boundaries
     this.sprite.setCollideWorldBounds(true);
 
     this.createAnimations(scene);
+  }
+
+  public getSprite() {
+    return this.sprite;
   }
 
   public setMovement(movement: MainCharacterMovement) {
