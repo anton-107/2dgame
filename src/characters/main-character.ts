@@ -79,6 +79,7 @@ export default class MainCharacter {
       this.sprite.play("right", true);
     } else {
       this.sprite.anims.stop();
+      this.sprite.setFrame(0);  // Reset to frame 0 when stopped
     }
   }
 }
