@@ -15,6 +15,7 @@ export default class MainCharacter {
   public addToScene(scene: Phaser.Scene, x: number, y: number) {
     // Create the character sprite
     this.sprite = scene.physics.add.sprite(x, y, "guy", 1);
+    this.sprite.setScale(2); // Make the sprite twice as big
     this.createAnimations(scene);
   }
 
