@@ -14,7 +14,36 @@ export default class CityScene extends Phaser.Scene {
   }
   create() {
     // Create the character sprite
-    this.character = this.physics.add.sprite(400, 300, "guy");
+    this.character = this.physics.add.sprite(400, 300, "guy", 1);
+
+    // Create animations for all directions
+    this.anims.create({
+      key: "up",
+      frames: this.anims.generateFrameNumbers("guy", { frames: [12, 13, 14, 15] }),
+      frameRate: 8,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: "down",
+      frames: this.anims.generateFrameNumbers("guy", { frames: [0, 1, 2, 3] }),
+      frameRate: 8,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: "left",
+      frames: this.anims.generateFrameNumbers("guy", { frames: [8, 9, 10, 11] }),
+      frameRate: 8,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: "right",
+      frames: this.anims.generateFrameNumbers("guy", { frames: [4, 5, 6, 7] }),
+      frameRate: 8,
+      repeat: -1
+    });
 
     // Enable keyboard input
     if (!this.input) {
