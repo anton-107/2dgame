@@ -16,6 +16,10 @@ export default class MainCharacter {
     // Create the character sprite
     this.sprite = scene.physics.add.sprite(x, y, "guy", 1);
     this.sprite.setScale(2); // Make the sprite twice as big
+    
+    // Prevent character from moving outside the scene boundaries
+    this.sprite.setCollideWorldBounds(true);
+    
     this.createAnimations(scene);
   }
 
