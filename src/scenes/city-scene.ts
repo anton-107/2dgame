@@ -11,6 +11,7 @@ export default class CityScene extends Phaser.Scene {
   private ground: Ground;
   private worldDebug = new WorldDebug();
   private cursorsKeys: Phaser.Types.Input.Keyboard.CursorKeys | undefined;
+  private proximityRadius = 50; // Detection radius in pixels
 
   constructor() {
     super("city");
@@ -47,6 +48,8 @@ export default class CityScene extends Phaser.Scene {
     if (!this.character) {
       return;
     }
+
+    // Handle character movement
     if (this.cursorsKeys) {
       if (this.cursorsKeys.up?.isDown) {
         this.character.setMovement("walking-up");
@@ -61,6 +64,34 @@ export default class CityScene extends Phaser.Scene {
       }
     }
     this.character.update();
+
+    // Check proximity between character and warrior
+    this.checkWarriorProximity();
+  }
+
+  private checkWarriorProximity() {
+    const characterSprite = this.character.getSprite();
+    const warriorSprite = this.warrior.getSprite();
+
+    if (characterSprite && warriorSprite) {
+      const distance = Phaser.Math.Distance.Between(
+        characterSprite.x,
+        characterSprite.y,
+        warriorSprite.x,
+        warriorSprite.y,
+      );
+
+      if (distance <= this.proximityRadius) {
+        // Character is within the proximity radius of the warrior
+        this.handleWarriorProximity();
+      }
+    }
+  }
+
+  private handleWarriorProximity() {
+    // This function will be called when the main character is near the warrior
+    // eslint-disable-next-line no-console
+    console.log("Character is near warrior!");
   }
 
   private initializeCursorKeys() {

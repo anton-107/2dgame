@@ -9,7 +9,7 @@ type MainCharacterMovement =
 
 export default class MainCharacter {
   private sprite: Phaser.Types.Physics.Arcade.SpriteWithDynamicBody | undefined;
-  private width =16;
+  private width = 16;
   private height = 24;
   private speed = 200;
   private currentMovement: MainCharacterMovement = "stopped";
