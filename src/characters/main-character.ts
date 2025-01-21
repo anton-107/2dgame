@@ -12,18 +12,9 @@ export default class MainCharacter {
   private speed = 200;
   private currentMovement: MainCharacterMovement = "stopped";
 
-  public addToScene(scene: Phaser.Scene) {
+  public addToScene(scene: Phaser.Scene, x: number, y: number) {
     // Create the character sprite
-    this.sprite = scene.physics.add.sprite(400, 300, "guy", 1);
-
-    // Create input keys
-    if (!scene.input) {
-      throw "Input should be defined";
-    }
-    if (!scene.input.keyboard) {
-      throw "Keyboard input should be defined";
-    }
-
+    this.sprite = scene.physics.add.sprite(x, y, "guy", 1);
     this.createAnimations(scene);
   }
 

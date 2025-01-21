@@ -19,7 +19,7 @@ export default class CityScene extends Phaser.Scene {
 
   public create() {
     this.character = new MainCharacter();
-    this.character.addToScene(this);
+    this.character.addToScene(this, 200, 150);
 
     this.initializeCursorKeys();
   }
