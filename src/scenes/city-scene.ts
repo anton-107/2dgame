@@ -1,10 +1,12 @@
 import * as Phaser from "phaser";
 
 import MainCharacter from "../characters/main-character";
+import Warrior from "../characters/warrior";
 import Ground from "../terrain/ground";
 
 export default class CityScene extends Phaser.Scene {
   private character: MainCharacter;
+  private warrior: Warrior;
   private ground: Ground;
   private cursorsKeys: Phaser.Types.Input.Keyboard.CursorKeys | undefined;
 
@@ -12,15 +14,18 @@ export default class CityScene extends Phaser.Scene {
     super("city");
     this.ground = new Ground();
     this.character = new MainCharacter();
+    this.warrior = new Warrior();
   }
 
   preload() {
     this.character.loadSpritesheet(this);
     this.ground.loadSpritesheet(this);
+    this.warrior.loadSpritesheet(this);
   }
 
   public create() {
     this.ground.addToScene(this);
+    this.warrior.addToScene(this, 300, 150);
     this.character.addToScene(this, 200, 150);
 
     this.initializeCursorKeys();
